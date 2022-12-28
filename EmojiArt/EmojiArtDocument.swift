@@ -10,10 +10,11 @@ import SwiftUI
 class EmojiArtDocument : ObservableObject {
     
     @Published private(set) var emojiArt : EmojiArtModel
-    private(set) var testEmojis = "🌻🌼🌸🌺🌹🌷💐🍄🍁🪴🍀🌿🌳🎄🌵🌲🌴🐿️"
     
     init(){
         emojiArt = EmojiArtModel()
+        addEmoji(text: "🌺", at: (-200,-50), size: 80)
+        addEmoji(text: "🐸", at: (100,150), size: 100)
     }
     var emojis  : [EmojiArtModel.Emoji] {
          return emojiArt.emojis
