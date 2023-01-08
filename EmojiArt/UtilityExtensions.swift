@@ -68,3 +68,29 @@ extension Array where Element == NSItemProvider {
         loadObjects(ofType: theType, firstOnly: true, using: load)
     }
 }
+extension URL {
+    var imageURL: URL {
+        for query in query?.components(separatedBy: "&") ?? [] {
+            let queryComponents = query.components(separatedBy: "=")
+            if queryComponents.count == 2 {
+                if queryComponents[0] == "imgurl", let url = URL(string: queryComponents[1].removingPercentEncoding ?? "") {
+                    return url
+                }
+            }
+        }
+        // if the URL itself is absolute, baseURL is nil
+        return baseURL ?? self
+    }
+}
+
+extension CGSize {
+    static func +(lhs: Self , rhs : Self) -> CGSize {
+        CGSize(width: lhs.width+rhs.width, height: lhs.height+rhs.height)
+    }
+    static func *(lhs:Self,rhs:CGFloat)->CGSize{
+        CGSize(width: lhs.width*rhs, height: lhs.height*rhs)
+    }
+    static func /(lhs:Self,rhs:CGFloat)->CGSize{
+        CGSize(width: lhs.width/rhs, height: lhs.height/rhs)
+    }
+}
