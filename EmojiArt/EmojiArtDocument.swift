@@ -64,6 +64,9 @@ class EmojiArtDocument : ObservableObject {
         
     }
     
+    var selectedEmojis = Set<EmojiArtModel.Emoji>()
+    
+    
     // MARK: - User Intents
     
     func setBackground(_ background : EmojiArtModel.background){
@@ -74,7 +77,28 @@ class EmojiArtDocument : ObservableObject {
         emojiArt.addEmoji(text, at: location, size: size)
     }
     
+    func touchEmoji(emoji: EmojiArtModel.Emoji){
+        emojiArt.touchEmoji(emoji: emoji)
+    }
     
+    func touchBackground(){
+        emojiArt.touchBackground()
+    }
+    func moveEmoji(emoji : EmojiArtModel.Emoji , by : CGSize){
+        if let index = emojiArt.emojis.firstIndex(where: {$0.id == emoji.id}){
+            emojiArt.emojis[index].x += Int(by.width)
+            emojiArt.emojis[index].y += Int(by.height)
+
+        }
+    }
+    func scaleEmoji(emoji : EmojiArtModel.Emoji , by scale : CGFloat){
+        if let index = emojiArt.emojis.firstIndex(where: {$0.id == emoji.id}){
+            emojiArt.emojis[index].size = Int(CGFloat(emojiArt.emojis[index].size)*scale)
+        }
+    }
+    func deleteEmoji(emoji:EmojiArtModel.Emoji){
+        emojiArt.deleteEmoji(emoji: emoji)
+    }
     
     
     

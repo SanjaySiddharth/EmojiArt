@@ -83,6 +83,12 @@ extension URL {
     }
 }
 
+extension CGPoint {
+    static func -(lhs:Self,rhs:Self) -> CGSize{
+        CGSize(width: lhs.x-rhs.x, height: lhs.y-rhs.y)
+    }
+}
+
 extension CGSize {
     static func +(lhs: Self , rhs : Self) -> CGSize {
         CGSize(width: lhs.width+rhs.width, height: lhs.height+rhs.height)
@@ -92,5 +98,8 @@ extension CGSize {
     }
     static func /(lhs:Self,rhs:CGFloat)->CGSize{
         CGSize(width: lhs.width/rhs, height: lhs.height/rhs)
+    }
+    static func -(lhs:Self,rhs:Self)->CGSize{
+        CGSize(width: lhs.width-rhs.width, height: lhs.height-rhs.height)
     }
 }
